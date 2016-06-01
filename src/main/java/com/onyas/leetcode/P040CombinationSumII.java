@@ -34,12 +34,12 @@ public class P040CombinationSumII {
 
         Arrays.sort(candidates);
 
-        dfs(candidates, target, 0, new ArrayList<Integer>(), result);
+        helper(candidates, target, 0, new ArrayList<Integer>(), result);
 
         return result;
     }
 
-    private void dfs(int[] candidates, int target, int start, ArrayList<Integer> item, List<List<Integer>> result) {
+    private void helper(int[] candidates, int target, int start, ArrayList<Integer> item, List<List<Integer>> result) {
 
         if (target == 0) {
             result.add(new ArrayList<Integer>(item));
@@ -56,7 +56,7 @@ public class P040CombinationSumII {
             }
             item.add(candidates[i]);
             // i + 1 ==> only be used once
-            dfs(candidates, target - candidates[i], i+1, item, result);//元素不重复时
+            helper(candidates, target - candidates[i], i+1, item, result);//元素不重复时
             item.remove(item.size() - 1);
         }
     }

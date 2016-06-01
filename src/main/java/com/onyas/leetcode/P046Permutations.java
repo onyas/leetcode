@@ -23,12 +23,12 @@ public class P046Permutations {
 
         List<List<Integer>> result = new ArrayList<List<Integer>>();
 
-        dfs(nums, new ArrayList<Integer>(), result);
+        helper(nums, new ArrayList<Integer>(), result);
 
         return result;
     }
 
-    private void dfs(int[] nums, ArrayList<Integer> items, List<List<Integer>> result) {
+    private void helper(int[] nums, ArrayList<Integer> items, List<List<Integer>> result) {
 
         if (nums.length == items.size()) {
             result.add(new ArrayList<Integer>(items));
@@ -40,7 +40,7 @@ public class P046Permutations {
                 continue;
             }
             items.add(nums[i]);
-            dfs(nums, items, result);
+            helper(nums, items, result);
             items.remove(items.size() - 1);
         }
 

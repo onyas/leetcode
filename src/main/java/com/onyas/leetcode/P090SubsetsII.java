@@ -39,11 +39,11 @@ public class P090SubsetsII {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         List<List<Integer>> results = new ArrayList<List<Integer>>();
         Arrays.sort(nums);
-        dfs(nums, 0, new ArrayList<Integer>(), results);
+        helper(nums, 0, new ArrayList<Integer>(), results);
         return results;
     }
 
-    private void dfs(int[] nums, int start, ArrayList<Integer> item, List<List<Integer>> results) {
+    private void helper(int[] nums, int start, ArrayList<Integer> item, List<List<Integer>> results) {
 
         results.add(new ArrayList<Integer>(item));
 
@@ -52,7 +52,7 @@ public class P090SubsetsII {
                 continue;
             }
             item.add(nums[i]);
-            dfs(nums, i + 1, item, results);
+            helper(nums, i + 1, item, results);
             item.remove(item.size() - 1);
         }
     }

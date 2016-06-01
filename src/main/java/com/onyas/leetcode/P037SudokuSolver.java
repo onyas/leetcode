@@ -27,14 +27,14 @@ public class P037SudokuSolver {
             return;
         }
 
-        dfs(board, 0, 0);
+        helper(board, 0, 0);
 
     }
 
-    private boolean dfs(char[][] board, int i, int j) {
+    private boolean helper(char[][] board, int i, int j) {
 
         if (j >= 9) {
-            return dfs(board, i + 1, 0);
+            return helper(board, i + 1, 0);
         }
 
         if (i == 9) {
@@ -46,7 +46,7 @@ public class P037SudokuSolver {
             for (int k = 1; k <= 9; k++) {
                 board[i][j] = (char) (k + '0');
                 if (isValid(board, i, j)) {
-                    if (dfs(board, i, j + 1)) {
+                    if (helper(board, i, j + 1)) {
                         return true;
                     }
                 }
@@ -54,7 +54,7 @@ public class P037SudokuSolver {
             }
 
         } else {
-            return dfs(board, i, j + 1);
+            return helper(board, i, j + 1);
         }
         return false;
 

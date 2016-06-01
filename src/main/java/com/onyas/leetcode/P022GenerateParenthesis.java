@@ -19,7 +19,7 @@ public class P022GenerateParenthesis {
 
     public List<String> generateParenthesis(int n) {
         ArrayList<String> resutl = new ArrayList<String>();
-        dfs(resutl, "", n, n);
+        helper(resutl, "", n, n);
         return resutl;
     }
 
@@ -30,7 +30,7 @@ public class P022GenerateParenthesis {
      * @param left
      * @param right
      */
-    private void dfs(ArrayList<String> resutl, String s, int left, int right) {
+    private void helper(ArrayList<String> resutl, String s, int left, int right) {
         if (left > right) {//when left > right,meaningless,so stop
             return;
         }
@@ -39,10 +39,10 @@ public class P022GenerateParenthesis {
             return;
         }
         if (left > 0) {
-            dfs(resutl, s + "(", left - 1, right);
+            helper(resutl, s + "(", left - 1, right);
         }
         if (right > 0) {
-            dfs(resutl, s + ")", left, right - 1);
+            helper(resutl, s + ")", left, right - 1);
         }
     }
 

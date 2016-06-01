@@ -35,12 +35,12 @@ public class P039CombinationSum {
 
         Arrays.sort(candidates);
 
-        dfs(candidates, target, 0, new ArrayList<Integer>(), result);
+        helper(candidates, target, 0, new ArrayList<Integer>(), result);
 
         return result;
     }
 
-    private void dfs(int[] candidates, int target, int start, ArrayList<Integer> item, List<List<Integer>> result) {
+    private void helper(int[] candidates, int target, int start, ArrayList<Integer> item, List<List<Integer>> result) {
 
         if (target == 0) {
             result.add(new ArrayList<Integer>(item));
@@ -52,7 +52,7 @@ public class P039CombinationSum {
                 return;
             }
             item.add(candidates[i]);
-            dfs(candidates, target - candidates[i], i, item, result);
+            helper(candidates, target - candidates[i], i, item, result);
 //            dfs(candidates, target - candidates[i], i+1, item, result);//元素不重复时
             item.remove(item.size() - 1);
         }

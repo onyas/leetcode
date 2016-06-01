@@ -38,17 +38,17 @@ public class P078Subsets {
 
         Arrays.sort(nums);
 
-        dfs(nums, 0, new ArrayList<Integer>(), result);
+        helper(nums, 0, new ArrayList<Integer>(), result);
 
         return result;
     }
 
-    private void dfs(int[] nums, int start, ArrayList<Integer> items, List<List<Integer>> result) {
+    private void helper(int[] nums, int start, ArrayList<Integer> items, List<List<Integer>> result) {
         result.add(new ArrayList<Integer>(items));
 
         for (int i = start; i < nums.length; i++) {
             items.add(nums[i]);
-            dfs(nums, i + 1, items, result);
+            helper(nums, i + 1, items, result);
             items.remove(items.size() - 1);
         }
     }

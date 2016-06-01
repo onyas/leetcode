@@ -29,11 +29,11 @@ public class P077Combinations {
         if (n <= 0 || k <= 0) {
             return result;
         }
-        dfs(n, k, 1, new ArrayList<Integer>(), result);
+        helper(n, k, 1, new ArrayList<Integer>(), result);
         return result;
     }
 
-    private void dfs(int n, int k, int start, ArrayList<Integer> item, List<List<Integer>> result) {
+    private void helper(int n, int k, int start, ArrayList<Integer> item, List<List<Integer>> result) {
 
         if (k == item.size()) {
             result.add(new ArrayList<Integer>(item));
@@ -42,7 +42,7 @@ public class P077Combinations {
 
         for (int i = start; i <= n; i++) {
             item.add(i);
-            dfs(n, k, i + 1, item, result);
+            helper(n, k, i + 1, item, result);
             item.remove(item.size() - 1);
         }
     }
