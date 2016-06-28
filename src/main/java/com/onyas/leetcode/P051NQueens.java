@@ -46,6 +46,7 @@ public class P051NQueens {
     }
 
     private void helper(int n, int row, int[] columnForRow, List<List<String>> res) {
+        //如果已经到最后一行了，说明这个是正确的queen
         if (n == row) {
             List<String> items = new ArrayList<String>(n);
             for (int i = 0; i < n; i++) {
@@ -63,6 +64,7 @@ public class P051NQueens {
             return;
         }
 
+        //在循环里面调用递归
         for (int i = 0; i < n; i++) {
             columnForRow[row] = i;
             if (check(row, columnForRow)) {
@@ -71,6 +73,7 @@ public class P051NQueens {
         }
     }
 
+    //在检查的时候，因为之前的行肯定都是正确的，所以只需要比较当前行的元素跟之前行的元素是不是在同一列上，还有是不是在对角线上
     private boolean check(int row, int[] columnForRow) {
 
         for (int i = 0; i < row; i++) {
