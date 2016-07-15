@@ -26,9 +26,8 @@ public class P026RemoveDuplicates {
 
         int result = 1;//start from 1
         for (int i = 1; i < nums.length; i++) {
-            if (nums[i] != nums[i - 1]) {
-                nums[result] = nums[i];
-                result++;
+            if (nums[i] != nums[result - 1]) {
+                nums[result++] = nums[i];
             }
         }
         return result;
