@@ -15,19 +15,15 @@ package com.onyas.leetcode;
 public class P206ReverseLinkedList {
 
     public ListNode reverseList(ListNode head) {
-        if (head == null) {
-            return null;
+        ListNode pre = null;
+        ListNode current = head;
+        while (current != null) {
+            ListNode next = current.next;
+            current.next = pre;
+            pre = current;
+            current = next;
         }
-        ListNode p1 = head, p2 = head.next;
-        while (p1 != null && p2 != null) {
-            ListNode temp = p2.next;
-            p2.next = p1;
-            p1 = p2;
-            p2 = temp;
-        }
-        head.next = null;
-        ListNode result = (p2 == null ? p1 : p2);
-        return result;
+        return pre;
     }
 
     static class ListNode {

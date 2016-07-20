@@ -41,4 +41,8 @@ public class P021MergeTwoLists {
             val = x;
         }
     }
+
+    public static void main(String[] args){
+
+    }
 }
