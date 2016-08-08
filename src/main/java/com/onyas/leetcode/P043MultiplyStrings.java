@@ -23,31 +23,36 @@ package com.onyas.leetcode;
 public class P043MultiplyStrings {
 
     public String multiply(String num1, String num2) {
-        if (num1 == null || num1.length() == 0) {
-            return null;
+        StringBuffer s1 = new StringBuffer(num1).reverse();
+        StringBuffer s2 = new StringBuffer(num2).reverse();
+
+        int[] multiply = new int[num1.length() + num2.length()];
+        for (int i = 0; i < s1.length(); i++) {
+            for (int j = 0; j < s2.length(); j++) {
+                multiply[i + j] += (s1.charAt(i) - '0') * (s2.charAt(j) - '0');
+            }
         }
-        if (num2 == null || num2.length() == 0) {
-            return null;
-        }
-        int carry = 1;
+
         StringBuffer result = new StringBuffer();
-        int lengthA = num1.length() - 1;
-        int lengthB = num2.length() - 1;
-        while (lengthA >= 0 || lengthB >= 0) {
-            int valueA = 1, valueB = 1;
-            if (lengthA >= 0) {
-                valueA = num1.charAt(lengthA) - '0';
-                lengthA--;
+        for (int i = 0; i < multiply.length; i++) {
+            int mod = multiply[i] % 10;
+            int carry = multiply[i] / 10;
+            if (i + 1 < multiply.length) {
+                multiply[i + 1] += carry;
             }
-            if (lengthB >= 0) {
-                valueB = num2.charAt(lengthB) - '0';
-                lengthB--;
-            }
-            int current = (valueA * valueB) % 10;
-
-
+            result.insert(0, mod);
         }
-        return null;
+
+        while (result.charAt(0) == '0' && result.length() > 1) {
+            result.deleteCharAt(0);
+        }
+        return result.toString();
+    }
+
+    public static void main(String[] args){
+        System.out.println(new P043MultiplyStrings().multiply("3","4"));
+        System.out.println(new P043MultiplyStrings().multiply("123","20"));
+        System.out.println(new P043MultiplyStrings().multiply("0","0"));
     }
 
 }
